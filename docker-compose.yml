@@ -2,8 +2,10 @@ version: "3.1"
 services:
   db:
     image: postgres:10-alpine
-    env_file:
-        - ./.env
+    environment:
+      POSTGRES_USER: digibooks
+      POSTGRES_PASSWORD: digibooks
+      POSTGRES_DB: digibooks
     ports:
       - "5432:5432"
     volumes:
