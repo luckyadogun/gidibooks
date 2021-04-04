@@ -1,5 +1,9 @@
 # gidibooks
 
-1. Install Python3.9
-2. Activate virtualenv
-3. Create a .env file
+- Install Python3.9
+- Activate virtualenv
+- Create a .env file
+- Linting
+```bash
+black $(find . -name '*.py')
+```
