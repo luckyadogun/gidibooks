@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from users.services import create_account
 from users.utils import user_to_dict
 
+
 @csrf_exempt
 def register(request):
     """
@@ -46,13 +47,15 @@ def login_user(request):
     )
     user_dict = user_to_dict(user)
 
-    if user is not None and user.is_authenticated and "success" in user_dict.keys():
+    if (
+        user is not None
+        and user.is_authenticated
+        and "success" in user_dict.keys()
+    ):
         return JsonResponse({"data": user_dict})
     else:
 
         return JsonResponse(
-            {
-                "data": user_dict
-            },
+            {"data": user_dict},
             status=401,
         )

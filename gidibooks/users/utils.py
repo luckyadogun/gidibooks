@@ -28,10 +28,14 @@ def user_to_dict(user: User):
             user_obj = User.objects.get(email=user)
 
     except User.DoesNotExist:
-        return {"error": "User with that account does not exist"}
-    
+        return {
+            "error": "User with that account does not exist"
+        }
+
     else:
-        user_dict = model_to_dict(user_obj, exclude=EXCLUDED_FIELDS)
+        user_dict = model_to_dict(
+            user_obj, exclude=EXCLUDED_FIELDS
+        )
         user_dict["user_id"] = str(user_dict["user_id"])
         user_dict["date_joined"] = user_dict[
             "date_joined"
