@@ -13,7 +13,22 @@ source env/bin/activate #unix only
 ```bash
 docker-compose up -d
 ```
+
+- Start the server 
+```bash
+python manage.py runserver 
+```
+
 - Linting
 ```bash
 black $(find . -name '*.py')
+```
+
+- Architecture:
+
+```bash
+- views/py: Handles HTTP only request/response to and fro the server [Accepts JSON]
+- services.py: Business domain/logic [reason for the application] [Accepts Dict/List]
+- utils.py: Data logic [Converts Queryset to Dictionary]
+- models.py: Handles data domain [Queryset objects]
 ```
