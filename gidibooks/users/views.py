@@ -1,11 +1,11 @@
 import json
 
 from django.http import JsonResponse
-from django.views.decorators import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 
-from users.serices import create_account
-
+from users.services import create_account
+from users.utils import user_to_dict
 
 @csrf_exempt
 def register(request):
@@ -44,15 +44,15 @@ def login_user(request):
     user = authenticate(
         email=payload["email"], password=payload["password"]
     )
+    user_dict = user_to_dict(user)
 
-    if user is not None:
-        login(request, user)
-
-        return JsonResponse({"data": user})
+    if user is not None and user.is_authenticated and "success" in user_dict.keys():
+        return JsonResponse({"data": user_dict})
     else:
+
         return JsonResponse(
             {
-                "data": "User with that account does not exist"
+                "data": user_dict
             },
             status=401,
         )

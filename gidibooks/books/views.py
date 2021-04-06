@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 
-from users.serices import find_book
+from books.services import find_book
 
 
 def search(request):

@@ -11,7 +11,11 @@ def create_account(data: Dict):
     Creates a user object using the dict argument
     """
     try:
-        user = User(email=data["email"])
+        user = User(
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            email=data["email"],
+        )
         user.set_password(data["password"])
 
         user.full_clean()

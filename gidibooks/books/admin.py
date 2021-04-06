@@ -18,4 +18,4 @@ class BookAdmin(admin.ModelAdmin):
         "status",
         "title",
     )
-    readonly_fields = ('book_id',)
+    readonly_fields = ("book_id",)

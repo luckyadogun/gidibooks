@@ -11,20 +11,64 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        migrations.swappable_dependency(
+            settings.AUTH_USER_MODEL
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('book_id', models.UUIDField(default=uuid.uuid4)),
-                ('title', models.CharField(max_length=200, verbose_name='title')),
-                ('status', models.CharField(choices=[('borrowed', 'borrowed'), ('available', 'available'), ('pending', 'pending')], default='available', max_length=20, verbose_name='book status')),
-                ('created', models.DateField(auto_now_add=True)),
-                ('updated', models.DateField(auto_now=True)),
-                ('borrower', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "book_id",
+                    models.UUIDField(default=uuid.uuid4),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        max_length=200, verbose_name="title"
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("borrowed", "borrowed"),
+                            ("available", "available"),
+                            ("pending", "pending"),
+                        ],
+                        default="available",
+                        max_length=20,
+                        verbose_name="book status",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateField(auto_now_add=True),
+                ),
+                (
+                    "updated",
+                    models.DateField(auto_now=True),
+                ),
+                (
+                    "borrower",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

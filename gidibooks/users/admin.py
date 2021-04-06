@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group
 from users.models import User
 from users.forms import UserForm
 
+
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     form = UserForm
@@ -15,19 +16,23 @@ class UserAdmin(admin.ModelAdmin):
     ordering = ("email",)
     filter_horizontal = ()
 
-    readonly_fields = ('user_id',)
+    readonly_fields = ("user_id",)
     fieldsets = (
-        (None, {
-            'fields': (                
-                'first_name', 
-                'last_name',
-                'email', 
-                'password', 
-                'user_id',
-                'is_staff',
-                'is_active', 
-            )}
+        (
+            None,
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "password",
+                    "user_id",
+                    "is_staff",
+                    "is_active",
+                )
+            },
         ),
     )
+
 
 admin.site.unregister(Group)
