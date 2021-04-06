@@ -24,3 +24,6 @@ src/node_modules
 web/media
 web/static/CACHE
 stats
+
+# Django
+/staticfiles
