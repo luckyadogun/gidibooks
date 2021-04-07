@@ -1,0 +1,52 @@
+##################################
+# THIS IS A MULTI-STAGE BUILD TO #
+# REDUCE THE SIZE OF THE IMAGE.  #
+##################################
+
+# BUILDER
+
+FROM python:3.9.2-alpine3.12 as builder
+
+WORKDIR /usr/src/app
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apk update \
+    && apk add postgresql-dev gcc musl-dev
+
+RUN pip install --upgrade pip \
+    && pip install flake8
+
+COPY . .
+RUN flake8 --ignore=E501,F401 .
+
+ADD requirements.txt ./
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+
+# FINAL
+
+FROM python:3.9.2-alpine3.12
+
+RUN mkdir -p /home/app
+
+RUN addgroup -S app && adduser -S app -G app
+
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME \
+    && mkdir $APP_HOME/staticfiles \
+    && mkdir $APP_HOME/mediafiles
+WORKDIR $APP_HOME
+
+RUN apk update && apk add libpq
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+COPY . $APP_HOME
+
+RUN chown -R app:app $APP_HOME
+
+USER app
