@@ -15,7 +15,7 @@ source env/bin/activate #unix only
 docker-compose up -d
 ```
 
-- Start the server 
+- Start the application server 
 ```bash
 python manage.py runserver 
 ```
