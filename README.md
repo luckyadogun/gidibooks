@@ -1,15 +1,16 @@
 # gidibooks
 
+#### DEV ENVIRONMENT:
 - Install Python3.9
-
+- Clone this repository
+- Create a .env file (use `.env.example` as guide)
 - Create and activate virtualenv
 ```bash
 virtualenv env --python=python3.9
 source env/bin/activate #unix only
 ```
-- Create a .env file (use `.env.example` as guide)
 
-- Start the database
+- Start the database server
 ```bash
 docker-compose up -d
 ```
@@ -23,6 +24,13 @@ python manage.py runserver
 ```bash
 black $(find . -name '*.py')
 ```
+
+#### PROD ENVIRONMENT
+- Install Docker & docker-compose
+- Clone this repository
+- Create a .env file (use `.env.example` as guide)
+- Run `docker-compose -f docker-compose.prod.yml up -d --build`
+
 
 - Architecture:
 
