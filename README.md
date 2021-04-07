@@ -32,7 +32,7 @@ black $(find . -name '*.py')
 - Run `docker-compose -f docker-compose.prod.yml up -d --build`
 
 
-- Architecture:
+#### Architecture:
 
 ```bash
 - views.py: Handles HTTP only request/response to and fro the server
@@ -41,7 +41,9 @@ black $(find . -name '*.py')
 - models.py: Handles data domain
 ```
 
-#### Endpoints [working]
+#### Endpoints 
+
+[working]
 
 - Auth[POST]
 ```bash
@@ -103,7 +105,7 @@ response:
 }
 ```
 
-Unfinished Endpoints
+[unfinished]
 
 - /search&q=book_title: (Query can also be book_id) [GET]
 - /mybooks&q=user_id: (UUID not PK) [GET]
