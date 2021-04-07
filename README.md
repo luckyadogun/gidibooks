@@ -32,7 +32,7 @@ black $(find . -name '*.py')
 - Run `docker-compose -f docker-compose.prod.yml up -d --build`
 
 
-#### Architecture:
+#### ARCHITECTURE:
 
 ```bash
 - views.py: Handles HTTP only request/response to and fro the server
@@ -41,7 +41,7 @@ black $(find . -name '*.py')
 - models.py: Handles data domain
 ```
 
-#### Endpoints 
+#### ENDPOINTS 
 
 [working]
 
