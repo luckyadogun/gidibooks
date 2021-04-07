@@ -107,6 +107,6 @@ response:
 
 [unfinished]
 
-- /search&q=book_title: (Query can also be book_id) [GET]
-- /mybooks&q=user_id: (UUID not PK) [GET]
-- /borrow: (Accepts user_id[uuid] and array of book_ids[uuid]) [POST] 
+- /books/search&q=book_title: (Query can also be book_id) [GET]
+- /books/mybooks&q=user_id: (UUID not PK) [GET]
+- /books/borrow: (Accepts user_id[uuid] and array of book_ids[uuid]) [POST] 
